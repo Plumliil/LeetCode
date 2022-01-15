@@ -122,16 +122,89 @@ var searchInsert2 = function (nums, target) {
  * @param {string} title
  * @return {string}
  */
- var capitalizeTitle = function (title) {
-    title=title.toLowerCase().split(' ');
-    for(let i=0;i<title.length;i++){
-        if(title[i].length>2){
-            title[i]=title[i][0].toUpperCase()+title[i].slice(1,title[i].length)
-        }else{
-            title[i]=title[i]
+var capitalizeTitle = function (title) {
+    title = title.toLowerCase().split(' ');
+    for (let i = 0; i < title.length; i++) {
+        if (title[i].length > 2) {
+            title[i] = title[i][0].toUpperCase() + title[i].slice(1, title[i].length)
+        } else {
+            title[i] = title[i]
         }
     }
     return title.join(' ');
 };
 // let title = "i capiTalIze tHe titLe";
 // console.log(capitalizeTitle(title));
+
+// 28. 实现 strStr()
+// 实现 strStr() 函数。
+
+// 给你两个字符串 haystack 和 needle ，请你在 haystack 字符串中找出 needle 字符串出现的第一个位置（下标从 0 开始）。如果不存在，则返回  -1 。
+
+/**
+ * @param {string} haystack
+ * @param {string} needle
+ * @return {number}
+ */
+var strStr = function (haystack, needle) {
+    return haystack.indexOf(needle)
+};
+// let haystack = "hello", needle = "ll";
+// // let haystack = "aaaaa", needle = "bba";
+// // let haystack = "", needle = "";
+// console.log(strStr(haystack,needle));
+
+// 58. 最后一个单词的长度
+// 给你一个字符串 s，由若干单词组成，单词前后用一些空格字符隔开。返回字符串中最后一个单词的长度。
+
+// 单词 是指仅由字母组成、不包含任何空格字符的最大子字符串。
+
+/**
+ * @param {string} s
+ * @return {number}
+ */
+// 反向遍历
+// trim()方法
+var lengthOfLastWord = function (s) {
+    s = s.trim().split(' ');
+    return s[s.length - 1].length
+    // for(let i=s.length-1;i>=0;i--){
+    //     if(s[i]!==''){
+    //         return s[i].length
+    //     }
+    // }    
+};
+// let s = "   fly me   to   the moon  ";
+// // let s = "Hello World";
+
+// console.log(lengthOfLastWord(s));
+
+
+// 66. 加一
+// 给定一个由 整数 组成的 非空 数组所表示的非负整数，在该数的基础上加一。
+
+// 最高位数字存放在数组的首位， 数组中每个元素只存储单个数字。
+
+// 你可以假设除了整数 0 之外，这个整数不会以零开头。
+
+/**
+ * @param {number[]} digits
+ * @return {number[]}
+ */
+//  var plusOne = function(digits) {
+//     const len = digits.length;
+//     for(let i = len - 1; i >= 0; i--) {
+//         digits[i]++;
+//         digits[i] %= 10;
+//         if(digits[i]!=0)
+//             return digits;
+//     }
+//     digits = [...Array(len + 1)].map(_=>0);;
+//     digits[0] = 1;
+//     return digits;
+// };
+
+// let digits = [9,9];
+// // let digits = [4,3,2,1];
+// console.log(plusOne(digits));
+// // console.log(8%10);
