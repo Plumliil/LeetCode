@@ -6,7 +6,7 @@
  * @param {string} s
  * @return {number}
  */
-var firstUniqChar = function (s) {
+ var firstUniqChar = function (s) {
     let len = s.length;
     for (let i = 0; i < len; i++) {
         if (s.indexOf(s[i])===s.lastIndexOf(s[i])) {
