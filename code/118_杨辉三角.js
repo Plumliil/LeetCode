@@ -21,4 +21,3 @@
     return res
 }
 console.log(generate(5));
-// console.log(1);
