@@ -7,7 +7,7 @@
  * @param {number} n
  * @return {number}
  */
-var fib = function (n) {
+ var fib = function (n) {
     if (n < 2) return n;
     let F = [];
     F[0] = 0;
