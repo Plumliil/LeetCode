@@ -1,8 +1,6 @@
-// 2016. 增量元素之间的最大差值
-// 给你一个下标从 0 开始的整数数组 nums ，
-// 该数组的大小为n,请你计算nums[j]-nums[i]能求得的最大差值 ，
-// 其中 0 <= i < j < n 且 nums[i] < nums[j] 。
-// 返回 最大差值 。如果不存在满足要求的 i 和 j ，返回 -1 。
+// 258. 各位相加
+// 给定一个非负整数 num，反复将各个位上的数字相加，
+// 直到结果为一位数。
 
 /**
  * @param {number[]} nums
@@ -57,5 +55,5 @@ var maximumDifference = function (nums) {
 
 // let nums = [7, 1, 5, 4];
 // let nums = [9,4,3,2];
-// let nums = [1, 5, 2, 10]
+let nums = [1, 5, 2, 10]
 console.log(maximumDifference(nums));
