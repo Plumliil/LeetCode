@@ -1,6 +1,47 @@
-// 83. 删除排序链表中的重复元素
-// 给定一个已排序的链表的头 head ， 删除所有重复的元素，
-// 使每个元素只出现一次 。返回 已排序的链表 。
+// // 19.删除链表的倒数第N个结点
+// // 给你一个链表,删除链表的倒数第n个结点,并且返回链表的头结点。
+
+
+var removeNthFromEnd = function (head, n) {
+    if (!head) return head;
+    function getLen(head) {
+        let n = 1;
+        while (head.next) {
+            head = head.next;
+            n++
+        }
+        return n
+    }
+    let len = getLen(head);
+    let cur = head;
+    if (!head.next) return null;
+    for (let i = 1; i < len; i++) {
+        if (len - i === n) {
+            if (cur.next.next) {
+                cur.next = cur.next.next;
+                return head
+            }
+            cur.next = null;
+            return head;
+        } else {
+            cur = cur.next
+        }
+    }
+};
+
+const { createList } = require('./util/createList')
+// head = [1,3,4], n = 2;
+// head = [1, 2], n = 1;
+head = [1], n = 1;
+let newHead = createList(head);
+
+console.log(removeNthFromEnd(newHead, n));
+
+// console.log(newHead);
+
+// 203. 移除链表元素
+// 给你一个链表的头节点 head 和一个整数 val ，
+// 请你删除链表中所有满足Node.val==val的节点,并返回新的头节点 。
 
 /**
  * Definition for singly-linked list.
@@ -9,63 +50,43 @@
  *     this.next = (next===undefined ? null : next)
  * }
  */
-/**
- * @param {ListNode} head
- * @return {ListNode}
- */
 
-function ListNode(val, next) {
-    this.val = (val === undefined ? 0 : val)
-    this.next = (next === undefined ? null : next)
-}
-function createList(arr) {
-    let len = arr.length;
-    let count = 0;
-    let head = null;
-    let tail = null;
-    while (count < len) {
-        if (!head) {
-            head = tail = new ListNode(arr[count])
-        } else {
-            tail.next = new ListNode(arr[count]);
-            tail = tail.next;
-        }
-        count++;
-    }
-    return head
-}
-var deleteDuplicates = function (head) {
-    if (!head) {
-        return head
-    }
-    let cur=head;
-    while(cur.next){
-        if(cur.val===cur.next.val){
-            cur.next=cur.next.next
-        }else{
-            cur=cur.next
-        }
-    }
-    // while (head.next) {
-    //     if (head.val === head.next.val) {
-    //         head.next = head.next.next;
-    //     } else {
-    //         head = head.next
-    //     }
-    // }
+// /**
+//  * @param {ListNode} head
+//  * @param {number} val
+//  * @return {ListNode}
+//  */
+// var removeElements = function (head, val) {
+//     if (!head) return head
+//     let cur = head;
+//     while (cur) {
+//         if (cur.next) {
+//             if (head.val === val) {
+//                 head = head.next;
+//             }
+//             if (cur.next.val === val) {
+//                 if (cur.next.next) {
+//                     let temp=cur.next;
+//                     cur.next = cur.next.next;
+//                     cur=temp;
+//                 } else {
+//                     cur.next = null
+//                 }
+//             }
+//         }
+//         cur=cur.next;
 
-    // console.log(head.val);
-    // console.log(head.next.val);
-    // console.log(head.next.next);
-    return head
-};
+//     }
+//     return head.val === val ? null : head;
+// };
 
-// head = [1, 1, 2]
-// head = [1, 2, 3, 4]
-// head = [1]
-head = [1, 1, 2, 3, 3]
-// [1,2]
+// // head = [6,3,5,6], val = 6
+// // head = [7, 7, 7, 7], val = 7
+// // head=[1],val=1
+// // head = [], val = 1
+// head = [1, 2, 2, 1], val = 2
+// // head = [1, 3, 4, 5], val = 3
 
-let newHead = createList(head);
-// console.log(newHead);
-console.log(deleteDuplicates(newHead));
+// let nhead = createList(head);
+// console.log(removeElements(nhead, val));
+// // console.log(nhead);
