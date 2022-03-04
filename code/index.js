@@ -97,6 +97,7 @@
  * @param {character[]} s
  * @return {void} Do not return anything, modify s in-place instead.
  */
+// while循环
 var reverseString = function (s) {
     let temp = null;
     let i=0,
@@ -112,7 +113,7 @@ var reverseString = function (s) {
     return s
 };
 
-// shuangzhizhen
+// 双指针
 const n = s.length;
 for (let left = 0, right = n - 1; left < right; ++left, --right) {
     [s[left], s[right]] = [s[right], s[left]];
