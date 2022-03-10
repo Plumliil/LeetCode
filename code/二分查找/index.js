@@ -1,44 +1,41 @@
-// 287. 寻找重复数
+// 34. 在排序数组中查找元素的第一个和最后一个位置
 
 
+// 给定一个按照升序排列的整数数组 nums，和一个目标值 target。找出给定目标值在数组中的开始位置和结束位置。
 
-// 给定一个包含 n + 1 个整数的数组 nums ，其数字都在 [1, n] 范围内
-// （包括 1 和 n），可知至少存在一个重复的整数。
-// 假设 nums 只有 一个重复的整数 ，返回 这个重复的数 。
-// 你设计的解决方案必须 不修改 数组 nums 且只用常量级 O(1) 的额外空间。
+// 如果数组中不存在目标值 target，返回 [-1, -1]。
 
+// 进阶：
 
+// 你可以设计并实现时间复杂度为 O(log n) 的算法解决此问题吗？
 /**
  * @param {number[]} nums
- * @return {number}
+ * @param {number} target
+ * @return {number[]}
  */
-var findDuplicate = function (nums) {
-    // let ans=null;
-    // let left=0;
-    // let right=nums.length;
-    // while (left<right) {
-    //     let mid=Math.floor(left+(right-left)/2);
-    //     if(left===right||left===mid){
-    //         return left
-    //     }else if(right===mid){
-    //         return mid
-    //     }else{
-    //         left=left+1;
-    //         right=right-1;
-    //     }
-    // }
-    let set=new Set();
-    for(let i=0;i<nums.length;i++){
-        if(set.has(nums[i])){
-            return nums[i]
-        }else{
-            set.add(nums[i])
+var searchRange = function (nums, target) {
+    if (nums === []) return [-1, -1]
+    let l = 0, r = nums.length - 1;
+    while (l <= r) {
+        let mid = Math.floor(l + (r - l) / 2);
+        if (nums[mid] > target) {
+            r = mid - 1;
+        } else if (nums[mid] < target) {
+            l = mid + 1;
+        } else {
+            if (nums[mid] === nums[mid - 1]) {
+                return [mid - 1, mid]
+            } else if (nums[mid] === nums[mid + 1]) {
+                return [mid, mid + 1]
+            } else {
+                return [mid, mid]
+            }
         }
     }
-    console.log(set);
+    return [-1, -1]
 };
+// nums = [5, 7, 7, 8, 8, 10], target = 8;
+// nums = [5,7,7,8,8,10], target = 6
+nums = [], target = 0
 
-// nums = [1,3,4,2,2]
-nums = [3,1,3,4,2]
-
-console.log(findDuplicate(nums));
+console.log(searchRange(nums, target));
