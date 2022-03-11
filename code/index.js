@@ -93,34 +93,39 @@
 
 
 
-/**
- * @param {character[]} s
- * @return {void} Do not return anything, modify s in-place instead.
- */
-// while循环
-var reverseString = function (s) {
-    let temp = null;
-    let i=0,
-        len=s.length,
-        n=len/2;
-    while(i<n){
-        temp=s[i];
-        s[i]=s[len-i-1];
-        s[len-i-1]=temp
-        i++;
-    }
-    console.log(s);
-    return s
-};
+// /**
+//  * @param {character[]} s
+//  * @return {void} Do not return anything, modify s in-place instead.
+//  */
+// // while循环
+// var reverseString = function (s) {
+//     let temp = null;
+//     let i=0,
+//         len=s.length,
+//         n=len/2;
+//     while(i<n){
+//         temp=s[i];
+//         s[i]=s[len-i-1];
+//         s[len-i-1]=temp
+//         i++;
+//     }
+//     console.log(s);
+//     return s
+// };
 
-// 双指针
-const n = s.length;
-for (let left = 0, right = n - 1; left < right; ++left, --right) {
-    [s[left], s[right]] = [s[right], s[left]];
-}
+// // 双指针
+// const n = s.length;
+// for (let left = 0, right = n - 1; left < right; ++left, --right) {
+//     [s[left], s[right]] = [s[right], s[left]];
+// }
 
 
-let s = ["h", "e", "l", "l", "o"];
-// s = ["H","a","n","n","a","h"]
+// let s = ["h", "e", "l", "l", "o"];
+// // s = ["H","a","n","n","a","h"]
 
-reverseString(s)
+// reverseString(s)
+
+
+
+let a=0;
+console.log();
