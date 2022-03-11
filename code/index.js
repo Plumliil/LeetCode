@@ -113,25 +113,47 @@
 //     return s
 // };
 
-
-// 283. 移动零
-// 给定一个数组 nums，编写一个函数将所有 0 移动到数组的末尾，同时保持非零元素的相对顺序。
-
-// 请注意 ，必须在不复制数组的情况下原地对数组进行操作。
-
-
-
-var moveZeroes = function (nums) {
-    let l = 0;
-    let f = 0;
-    for(;f<nums.length;f++){
-        if (nums[f] !== 0) {
-            [nums[l], nums[f]] = [nums[f], nums[l]];
-            l++;
+// 844. 比较含退格的字符串
+// 给定 s 和 t 两个字符串，当它们分别被输入到空白的文本编辑器后，
+// 如果两者相等，返回 true 。# 代表退格字符。
+// 注意：如果对空文本输入退格字符，文本继续为空。
+var backspaceCompare = function (s, t) {
+    function fn(arg) {
+        let ans = '';
+        let n=0;
+        for(let i=arg.length-1;i>=0;i--){
+            if(arg[i]==='#'){
+                n++
+            }else if(n>0){
+                n--
+            }else{
+                ans=ans+arg[i]
+            }
         }
+        return ans;
     }
-    return nums
+    return fn(s)===fn(t)
 };
-
-nums = [0, 1, 0, 3, 12]
-moveZeroes(nums)
+// var backspaceCompare = function(s, t) {
+//     function fn(arg) {
+//         let str=[...arg];
+//         let res=[];
+//         for(let i=0;i<str.length;i++){
+//             if(str[i]!=='#'){
+//                 res.push(str[i])
+//             }else{
+//                 res.pop()
+//             }
+//         }
+//         return res.join('')
+//     }
+//     let strs=fn(s);
+//     let strt=fn(t);
+//     return strs===strt
+// };
+// s = "ab##", t = "c#d#"
+// s = "a#c", t = "b"
+// s = "ab#c", t = "ad#c"
+s="bxj##tw"
+t="bxj###tw"
+console.log(backspaceCompare(s, t));
