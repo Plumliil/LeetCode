@@ -113,47 +113,32 @@
 //     return s
 // };
 
-// 844. 比较含退格的字符串
-// 给定 s 和 t 两个字符串，当它们分别被输入到空白的文本编辑器后，
-// 如果两者相等，返回 true 。# 代表退格字符。
-// 注意：如果对空文本输入退格字符，文本继续为空。
-var backspaceCompare = function (s, t) {
-    function fn(arg) {
-        let ans = '';
-        let n=0;
-        for(let i=arg.length-1;i>=0;i--){
-            if(arg[i]==='#'){
-                n++
-            }else if(n>0){
-                n--
-            }else{
-                ans=ans+arg[i]
-            }
-        }
-        return ans;
-    }
-    return fn(s)===fn(t)
-};
-// var backspaceCompare = function(s, t) {
-//     function fn(arg) {
-//         let str=[...arg];
-//         let res=[];
-//         for(let i=0;i<str.length;i++){
-//             if(str[i]!=='#'){
-//                 res.push(str[i])
-//             }else{
-//                 res.pop()
-//             }
-//         }
-//         return res.join('')
-//     }
-//     let strs=fn(s);
-//     let strt=fn(t);
-//     return strs===strt
+// 977. 有序数组的平方
+// 给你一个按 非递减顺序 排序的整数数组 nums，
+// 返回 每个数字的平方 组成的新数组，要求也按 非递减顺序 排序。
+// 暴力
+// var sortedSquares = function (nums) {
+//     let res=nums.map(item=>Math.pow(item,2));
+//     return res.sort((a,b)=>a-b)
 // };
-// s = "ab##", t = "c#d#"
-// s = "a#c", t = "b"
-// s = "ab#c", t = "ad#c"
-s="bxj##tw"
-t="bxj###tw"
-console.log(backspaceCompare(s, t));
+// 双指针
+var sortedSquares = function (nums) {
+    let len=nums.length-1;
+    let l=0;
+    let r=len;
+    let res=[]
+    while(l<=r){
+        let pl=Math.pow(nums[l],2);
+        let pr=Math.pow(nums[r],2);
+        if(pl<pr){
+            res[len--]=pr;
+            r--;
+        }else{
+            res[len--]=pl;
+            l++
+        }
+    }
+    return res
+};
+nums = [-4, -1, 0, 3, 10]
+sortedSquares(nums)
