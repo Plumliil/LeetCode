@@ -91,51 +91,41 @@
 // // console.log(removeElements(nhead, val));
 // // // console.log(nhead);
 
+// 904. 水果成篮
+
+// 你正在探访一家农场，农场从左到右种植了一排果树。这些树用一个整数数组 fruits 表示，其中 fruits[i] 是第 i 棵树上的水果 种类 。
+
+// 你想要尽可能多地收集水果。然而，农场的主人设定了一些严格的规矩，你必须按照要求采摘水果：
+
+// 你只有 两个 篮子，并且每个篮子只能装 单一类型 的水果。每个篮子能够装的水果总量没有限制。
+// 你可以选择任意一棵树开始采摘，你必须从 每棵 树（包括开始采摘的树）上 恰好摘一个水果 。采摘的水果应当符合篮子中的水果类型。每采摘一次，你将会向右移动到下一棵树，并继续采摘。
+// 一旦你走到某棵树前，但水果不符合篮子的水果类型，那么就必须停止采摘。
+// 给你一个整数数组 fruits ，返回你可以收集的水果的 最大 数目。
 
 
 // /**
-//  * @param {character[]} s
-//  * @return {void} Do not return anything, modify s in-place instead.
+//  * @param {number[]} fruits
+//  * @return {number}
 //  */
-// // while循环
-// var reverseString = function (s) {
-//     let temp = null;
-//     let i=0,
-//         len=s.length,
-//         n=len/2;
-//     while(i<n){
-//         temp=s[i];
-//         s[i]=s[len-i-1];
-//         s[len-i-1]=temp
-//         i++;
+// var totalFruit = function (fruits) {
+//     const len = fruits.length;
+//     let f = s =  0;
+//     let ans=len+1;
+//     let basket = new Set();
+//     // let basket=[];
+//     while (f < len) {
+//         if (basket.size <= 2 || !basket.has(fruits[f])) {
+//             basket.add(fruits[f++]);
+//         } else {
+//             basket.delete(fruits[s++]);
+//         }
+//         // if(!basket)
 //     }
-//     console.log(s);
-//     return s
+//     console.log(ans);
 // };
 
 
-// 209. 长度最小的子数组
-// 给定一个含有 n 个正整数的数组和一个正整数 target 。
-
-// 找出该数组中满足其和 ≥ target 的长度最小的 连续子数组 
-// [numsl, numsl+1, ..., numsr-1, numsr] ，并返回其长度。
-// 如果不存在符合条件的子数组，返回 0 。
-
-
-var minSubArrayLen = function (target, nums) {
-    const len = nums.length;
-    let s = f = sum = 0;
-    let ans = len + 1;
-    while (f < len) {
-        sum += nums[f++];
-        while (sum >= target) {
-            ans = ans < f - s ? ans : f - s;
-            sum -= nums[s++]
-        }
-    }
-    return ans > len ? 0 : ans
-};
-
-target = 7, nums = [2, 3, 1, 2, 4, 3];
-
-minSubArrayLen(target, nums)
+// // fruits = [1, 2, 3, 2, 2];
+// // fruits = [0,1,2,2]
+// fruits = [3, 3, 3, 1, 2, 1, 1, 2, 3, 3, 4]
+// totalFruit(fruits)
