@@ -2,19 +2,11 @@
 // 背包的装载有限,只能带走m重量的价值,一种宝物只能拿一样,
 // 宝物可以分割,怎样拿才会使价值最大 
 
-function fn(goods,w=30) {
-    goods=goods.sort((a,b)=>b.w/b.v-a.w/a.v);
-    let res=[];
+function fn(goods) {
+    goods=goods.sort((a,b)=>a.w/a.v-b.w/b.v)
     // let goodsMap=goods.map()
-    for(let i=0;i<goods.length;i++){
-        if(w-goods[i]['w']>=0){
-            res.push(goods[i]['i']);
-            w-=goods[i]['w'];
-        }
-    }
+
     console.log(goods);
-    console.log(w);
-    console.log(res.reduce((p,c,t)=>t=p+c,0));
 }
 
 let goods = [
