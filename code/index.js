@@ -113,32 +113,29 @@
 //     return s
 // };
 
-// 977. 有序数组的平方
-// 给你一个按 非递减顺序 排序的整数数组 nums，
-// 返回 每个数字的平方 组成的新数组，要求也按 非递减顺序 排序。
-// 暴力
-// var sortedSquares = function (nums) {
-//     let res=nums.map(item=>Math.pow(item,2));
-//     return res.sort((a,b)=>a-b)
-// };
-// 双指针
-var sortedSquares = function (nums) {
-    let len=nums.length-1;
-    let l=0;
-    let r=len;
-    let res=[]
-    while(l<=r){
-        let pl=Math.pow(nums[l],2);
-        let pr=Math.pow(nums[r],2);
-        if(pl<pr){
-            res[len--]=pr;
-            r--;
-        }else{
-            res[len--]=pl;
-            l++
+
+// 209. 长度最小的子数组
+// 给定一个含有 n 个正整数的数组和一个正整数 target 。
+
+// 找出该数组中满足其和 ≥ target 的长度最小的 连续子数组 
+// [numsl, numsl+1, ..., numsr-1, numsr] ，并返回其长度。
+// 如果不存在符合条件的子数组，返回 0 。
+
+
+var minSubArrayLen = function (target, nums) {
+    const len = nums.length;
+    let s = f = sum = 0;
+    let ans = len + 1;
+    while (f < len) {
+        sum += nums[f++];
+        while (sum >= target) {
+            ans = ans < f - s ? ans : f - s;
+            sum -= nums[s++]
         }
     }
-    return res
+    return ans > len ? 0 : ans
 };
-nums = [-4, -1, 0, 3, 10]
-sortedSquares(nums)
+
+target = 7, nums = [2, 3, 1, 2, 4, 3];
+
+minSubArrayLen(target, nums)
