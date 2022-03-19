@@ -50,38 +50,50 @@
 // 你可以设计并实现时间复杂度为 O(log n) 的算法解决此问题吗？
 
 
+
 /**
  * @param {number[]} nums
  * @param {number} target
  * @return {number[]}
  */
-var searchRange = function (nums, target) {
+ var searchRange = function (nums, target) {
     if (nums.length === 0 || nums[0] > target || nums[nums.length - 1] < target) return [-1, -1];
-    let f = s = ans = 0;
-    let len = nums.length;
-    while (len-- > 0) {
-        if (nums[f] === target) {
-            s = f;
-            for (; s < nums.length; s++) {
-                if (nums[s] === target) {
-                    ans = s;
-                }
+    function range(mid,nums,target,flag) {
+        while(nums[mid]===target){
+            if(flag){
+                mid=mid+1;
+            }else{
+                mid=mid-1;
             }
-            break;
-        } else {
-            f++;
+        }
+        return mid;
+    }
+    let len = nums.length - 1;
+    let l = 0,
+        r = len;
+    while (l <= r) {
+        let mid=Math.floor(l+(r-l)/2);
+        if(nums[mid]>target){
+            r=mid-1;
+        }else if(nums[mid]<target){
+            l=mid+1;
+        }else{
+            let nl,nr;
+            
+            nl=range(mid,nums,target,false)+1;
+            nr=range(mid,nums,target,true)-1;
+            console.log(nl,nr);
+            return [nl, nr];
         }
     }
-    return f > s ? [-1, -1] : [f, ans];
+    return [-1,-1]
 };
 
-nums = [5, 7, 7, 8, 8, 8, 10], target = 8;
+nums = [5, 7, 7, 8, 8, 10], target = 8;
 // nums = [5,7,7,8,8,10], target = 6;
 // nums = [], target = 0;
 // nums = [1], target = 0;
 // nums=[2,2],target=2
 // nums = [1, 4], target = 4
-
-
 
 console.log(searchRange(nums, target));
