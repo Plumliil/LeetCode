@@ -40,60 +40,36 @@
 // fruits = [3, 3, 3, 1, 2, 1, 1, 2, 3, 3, 4]
 // totalFruit(fruits)
 
-
-// 给定一个按照升序排列的整数数组 nums，和一个目标值 target。找出给定目标值在数组中的开始位置和结束位置。
-
-// 如果数组中不存在目标值 target，返回 [-1, -1]。
-
-// 进阶：
-
-// 你可以设计并实现时间复杂度为 O(log n) 的算法解决此问题吗？
-
+// 349. 两个数组的交集
+// 给定两个数组 nums1 和 nums2 ，返回 它们的交集 。
+// 输出结果中的每个元素一定是 唯一 的。
+// 我们可以 不考虑输出结果的顺序 。
 
 
 /**
- * @param {number[]} nums
- * @param {number} target
+ * @param {number[]} nums1
+ * @param {number[]} nums2
  * @return {number[]}
  */
- var searchRange = function (nums, target) {
-    if (nums.length === 0 || nums[0] > target || nums[nums.length - 1] < target) return [-1, -1];
-    function range(mid,nums,target,flag) {
-        while(nums[mid]===target){
-            if(flag){
-                mid=mid+1;
-            }else{
-                mid=mid-1;
+var intersection = function (nums1, nums2) {
+    if(nums1.length===0||nums2.length===0) return [];
+    let len1 = nums1.length;
+    let len2 = nums2.length;
+    let set = new Set();
+    for (let i = 0; i < len1; i++) {
+        for (let j = 0; j < len2; j++) {
+            if (nums1[i] === nums2[j]) {
+                set.add(nums1[i])
             }
         }
-        return mid;
     }
-    let len = nums.length - 1;
-    let l = 0,
-        r = len;
-    while (l <= r) {
-        let mid=Math.floor(l+(r-l)/2);
-        if(nums[mid]>target){
-            r=mid-1;
-        }else if(nums[mid]<target){
-            l=mid+1;
-        }else{
-            let nl,nr;
-            
-            nl=range(mid,nums,target,false)+1;
-            nr=range(mid,nums,target,true)-1;
-            console.log(nl,nr);
-            return [nl, nr];
-        }
-    }
-    return [-1,-1]
+    console.log([...set]);
+    return set.size > 0 ? [...set] : [];
 };
 
-nums = [5, 7, 7, 8, 8, 10], target = 8;
-// nums = [5,7,7,8,8,10], target = 6;
-// nums = [], target = 0;
-// nums = [1], target = 0;
-// nums=[2,2],target=2
-// nums = [1, 4], target = 4
 
-console.log(searchRange(nums, target));
+nums1 = [1,2,2,1], nums2 = [2,2]
+// nums1 = [4, 9, 5], nums2 = [9, 4, 9, 8, 4]
+
+
+intersection(nums1, nums2)
